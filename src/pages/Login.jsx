@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import {
   Box,
+  Stack,
   Card,
   CardContent,
   CardMedia,
@@ -13,6 +14,8 @@ import {
 } from "@mui/material";
 
 import LoginIcon from "@mui/icons-material/Login";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import GoogleIcon from "@mui/icons-material/Google";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -51,6 +54,7 @@ const Login = () => {
           image="https://cdn.pixabay.com/photo/2016/10/21/14/50/plouzane-1758197_960_720.jpg"
           alt="beach"
         />
+
         <CardContent component="div">
           <Typography gutterBottom variant="h5">
             Iniciar Sesión
@@ -99,13 +103,39 @@ const Login = () => {
             </CardActions>
           </Box>
 
+          <Typography variant="body1" align="center">
+            Inicia Sesión con
+          </Typography>
+
+          <Stack
+            component="div"
+            direction="row"
+            spacing={4}
+            sx={{ marginY: "12px", justifyContent: "center" }}
+          >
+            <Button
+              variant="contained"
+              startIcon={<GoogleIcon />}
+              color="error"
+            >
+              Google
+            </Button>
+            <Button
+              variant="contained"
+              startIcon={<FacebookIcon />}
+              color="info"
+            >
+              Facebook
+            </Button>
+          </Stack>
+
           <Box textAlign="center">
             <Typography gutterBottom variant="body2" component="span">
               ¿Ya estás registrado?
             </Typography>
             <Link
               style={{
-                color: "darkblue",
+                color: "blue",
                 fontWeight: "bold",
                 marginLeft: "8px",
               }}
