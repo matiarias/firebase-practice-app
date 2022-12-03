@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+
+import { UseAuth } from "../context/AuthContext";
+
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   Box,
@@ -15,9 +18,13 @@ import {
 import LoginIcon from "@mui/icons-material/Login";
 
 const SignUp = () => {
+  const { user, signUp } = UseAuth();
+
   const [email, setEmail] = useState("");
 
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const handleChangeEmail = ({ target }) => {
     setEmail(target.value);
@@ -27,8 +34,15 @@ const SignUp = () => {
     setPassword(target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      await signUp(email, password);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -47,7 +61,7 @@ const SignUp = () => {
       <Card sx={{ maxWidth: 450 }}>
         <CardMedia
           component="img"
-          height="200"
+          height="180"
           image="https://cdn.pixabay.com/photo/2016/11/29/06/28/bay-1867798_960_720.jpg"
           alt="hawaii beach"
         />

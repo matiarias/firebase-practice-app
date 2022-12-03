@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+
+import { UseAuth } from "../context/AuthContext";
+
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   Box,
@@ -11,6 +14,7 @@ import {
   Typography,
   TextField,
   Button,
+  Alert,
 } from "@mui/material";
 
 import LoginIcon from "@mui/icons-material/Login";
@@ -18,9 +22,15 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 
 const Login = () => {
+  const { user, logIn } = UseAuth();
+
   const [email, setEmail] = useState("");
 
   const [password, setPassword] = useState("");
+
+  const [errorLogIn, setErrorLogIn] = useState("");
+
+  const navigate = useNavigate();
 
   const handleChangeEmail = ({ target }) => {
     setEmail(target.value);
@@ -30,8 +40,15 @@ const Login = () => {
     setPassword(target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      await logIn(email, password);
+      navigate("/");
+    } catch (error) {
+      setErrorLogIn(error.message);
+    }
   };
 
   return (
@@ -50,7 +67,7 @@ const Login = () => {
       <Card sx={{ maxWidth: 450 }}>
         <CardMedia
           component="img"
-          height="200"
+          height="180"
           image="https://cdn.pixabay.com/photo/2016/10/21/14/50/plouzane-1758197_960_720.jpg"
           alt="beach"
         />
@@ -60,11 +77,9 @@ const Login = () => {
             Iniciar Sesión
           </Typography>
 
-          <Box
-            onSubmit={handleSubmit}
-            component="form"
-            sx={{ padding: "10px" }}
-          >
+          {errorLogIn && <Alert severity="error">{errorLogIn}</Alert>}
+
+          <Box onSubmit={handleSubmit} component="form">
             <TextField
               id="outlined-basic"
               label="Email"
@@ -91,7 +106,7 @@ const Login = () => {
 
             <CardActions>
               <Button
-                sx={{ marginY: "12px" }}
+                sx={{ marginY: "10px" }}
                 variant="contained"
                 color="primary"
                 fullWidth={true}
