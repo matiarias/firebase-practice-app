@@ -60,7 +60,7 @@ const Login = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        paddingX: "20px",
+        paddingX: "24px",
         background: "#afafaf",
       }}
     >
@@ -73,7 +73,7 @@ const Login = () => {
         />
 
         <CardContent component="div">
-          <Typography gutterBottom variant="h5">
+          <Typography gutterBottom variant="h5" align="center">
             Iniciar Sesión
           </Typography>
 

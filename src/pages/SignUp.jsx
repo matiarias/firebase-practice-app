@@ -66,7 +66,7 @@ const SignUp = () => {
           alt="hawaii beach"
         />
         <CardContent component="div">
-          <Typography gutterBottom variant="h5">
+          <Typography gutterBottom variant="h5" align="center">
             Registrarse
           </Typography>
 

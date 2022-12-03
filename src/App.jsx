@@ -5,6 +5,8 @@ import SignUp from "./pages/SignUp";
 
 import { AuthContextProvider } from "./context/AuthContext";
 
+import { ProtectedRoutes } from "./routes/ProtectedRoutes";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App = () => {
@@ -13,7 +15,14 @@ const App = () => {
       <AuthContextProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route
+              path="/"
+              element={
+                <ProtectedRoutes>
+                  <Home />
+                </ProtectedRoutes>
+              }
+            />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
           </Routes>
