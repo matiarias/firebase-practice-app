@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { UseAuth } from "../context/AuthContext";
 
-import { Stack, Box, AppBar, Toolbar, Typography, Button } from "@mui/material";
+import { Stack, AppBar, Toolbar, Typography, Button } from "@mui/material";
 
 const NavBar = () => {
   const { user, logOut } = UseAuth();
