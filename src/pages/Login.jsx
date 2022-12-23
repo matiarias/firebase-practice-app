@@ -56,7 +56,7 @@ const GithubButton = styled(Button)({
 });
 
 const Login = () => {
-  const { logIn, loginGoogle } = UseAuth();
+  const { logIn, loginGoogle, loginGithub } = UseAuth();
 
   const [email, setEmail] = useState("");
 
@@ -94,6 +94,15 @@ const Login = () => {
   const handleLoginGoogle = async () => {
     try {
       await loginGoogle();
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleLoginGithub = async () => {
+    try {
+      await loginGithub();
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -184,20 +193,28 @@ const Login = () => {
 
           <Stack
             component="div"
-            direction="row"
-            spacing={4}
-            sx={{ marginY: "12px", justifyContent: "center" }}
+            direction={{ sx: "column", md: "row" }}
+            justifyContent="center"
+            spacing={3}
+            gap={2}
+            sx={{ marginY: "12px" }}
           >
             <Button
               onClick={handleLoginGoogle}
               variant="contained"
               startIcon={<GoogleIcon />}
-              color="info"
+              color="success"
+              size="small"
             >
               Google
             </Button>
 
-            <GithubButton variant="contained" startIcon={<GitHubIcon />}>
+            <GithubButton
+              onClick={handleLoginGithub}
+              variant="contained"
+              startIcon={<GitHubIcon />}
+              size="small"
+            >
               Github
             </GithubButton>
           </Stack>
