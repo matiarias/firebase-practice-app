@@ -107,7 +107,7 @@ const Login = () => {
       <Card sx={{ width: { xs: "100%", sm: 400, md: 450, lg: 470 } }}>
         <CardMedia
           component="img"
-          height="150"
+          height="140"
           image="https://cdn.pixabay.com/photo/2016/10/21/14/50/plouzane-1758197_960_720.jpg"
           alt="beach"
         />
@@ -128,6 +128,7 @@ const Login = () => {
             <OutlinedInput
               id="input-email"
               type="email"
+              autoComplete="email"
               fullWidth={true}
               sx={{ marginBottom: "10px" }}
               value={email}

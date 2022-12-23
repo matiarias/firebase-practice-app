@@ -77,7 +77,7 @@ const SignUp = () => {
       <Card sx={{ width: { xs: "100%", sm: 400, md: 450, lg: 470 } }}>
         <CardMedia
           component="img"
-          height="180"
+          height="140"
           image="https://cdn.pixabay.com/photo/2016/11/29/06/28/bay-1867798_960_720.jpg"
           alt="hawaii beach"
         />

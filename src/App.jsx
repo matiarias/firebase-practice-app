@@ -8,12 +8,14 @@ import { AuthContextProvider } from "./context/AuthContext";
 import { ProtectedRoutes } from "./routes/ProtectedRoutes";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NavBar from "./components/NavBar";
 
 const App = () => {
   return (
     <>
       <AuthContextProvider>
         <BrowserRouter>
+          <NavBar />
           <Routes>
             <Route
               path="/"
