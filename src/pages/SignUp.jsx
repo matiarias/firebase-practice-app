@@ -77,9 +77,9 @@ const SignUp = () => {
       <Card sx={{ width: { xs: "100%", sm: 400, md: 450, lg: 470 } }}>
         <CardMedia
           component="img"
-          height="140"
-          image="https://cdn.pixabay.com/photo/2016/11/29/06/28/bay-1867798_960_720.jpg"
-          alt="hawaii beach"
+          height="150"
+          image="https://c4.wallpaperflare.com/wallpaper/152/633/174/rick-and-morty-wallpaper-preview.jpg"
+          alt="rick and morty 2"
         />
         <CardContent component="div">
           <Typography gutterBottom variant="h5" align="center">
@@ -102,7 +102,7 @@ const SignUp = () => {
               id="input-email"
               type="email"
               variant="outlined"
-              color="success"
+              color="secondary"
               fullWidth={true}
               sx={{ marginBottom: "10px" }}
               value={email}
@@ -115,7 +115,7 @@ const SignUp = () => {
               id="outlined-password"
               type={showPassword ? "text" : "password"}
               autoComplete="current-password"
-              color="success"
+              color="secondary"
               fullWidth={true}
               value={password}
               onChange={handleChangePassword}
@@ -136,7 +136,7 @@ const SignUp = () => {
               <Button
                 sx={{ marginY: "12px" }}
                 variant="contained"
-                color="success"
+                color="secondary"
                 fullWidth={true}
                 endIcon={<LoginIcon />}
                 type="submit"
@@ -150,15 +150,14 @@ const SignUp = () => {
             <Typography gutterBottom variant="body2" component="span">
               Si ya estas registrado
             </Typography>
-            <Link
-              style={{
-                color: "darkgreen",
-                fontWeight: "bold",
-                marginLeft: "8px",
-              }}
-              to="/login"
-            >
-              Inicia Sesión
+            <Link to="/login">
+              <Button
+                sx={{ marginLeft: "8px", fontWeight: "bold" }}
+                variant="text"
+                color="secondary"
+              >
+                Inicar Sesión
+              </Button>
             </Link>
           </Box>
         </CardContent>

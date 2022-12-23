@@ -125,9 +125,9 @@ const Login = () => {
       <Card sx={{ width: { xs: "100%", sm: 400, md: 450, lg: 470 } }}>
         <CardMedia
           component="img"
-          height="140"
-          image="https://cdn.pixabay.com/photo/2016/10/21/14/50/plouzane-1758197_960_720.jpg"
-          alt="beach"
+          height="150"
+          image="https://free4kwallpapers.com/uploads/originals/2022/06/08/rick-n-morty-wallpaper.jpg"
+          alt="rick and morty"
         />
 
         <CardContent component="div">
@@ -177,7 +177,7 @@ const Login = () => {
               <Button
                 sx={{ marginY: "10px" }}
                 variant="contained"
-                color="primary"
+                color="warning"
                 fullWidth={true}
                 endIcon={<LoginIcon />}
                 type="submit"
@@ -204,7 +204,6 @@ const Login = () => {
               variant="contained"
               startIcon={<GoogleIcon />}
               color="success"
-              size="small"
             >
               Google
             </Button>
@@ -213,7 +212,6 @@ const Login = () => {
               onClick={handleLoginGithub}
               variant="contained"
               startIcon={<GitHubIcon />}
-              size="small"
             >
               Github
             </GithubButton>
@@ -223,15 +221,14 @@ const Login = () => {
             <Typography gutterBottom variant="body2" component="span">
               ¿Ya estás registrado?
             </Typography>
-            <Link
-              style={{
-                color: "blue",
-                fontWeight: "bold",
-                marginLeft: "8px",
-              }}
-              to="/signup"
-            >
-              Registrarse
+            <Link to="/signup">
+              <Button
+                sx={{ marginLeft: "8px", fontWeight: "bold" }}
+                variant="text"
+                color="warning"
+              >
+                Registrarse
+              </Button>
             </Link>
           </Box>
         </CardContent>
