@@ -13,16 +13,27 @@ import {
   Typography,
   TextField,
   Button,
+  Alert,
+  OutlinedInput,
+  InputAdornment,
+  IconButton,
+  InputLabel,
 } from "@mui/material";
 
 import LoginIcon from "@mui/icons-material/Login";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 const SignUp = () => {
-  const { user, signUp } = UseAuth();
+  const { signUp } = UseAuth();
 
   const [email, setEmail] = useState("");
 
   const [password, setPassword] = useState("");
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
@@ -34,6 +45,10 @@ const SignUp = () => {
     setPassword(target.value);
   };
 
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -41,7 +56,8 @@ const SignUp = () => {
       await signUp(email, password);
       navigate("/");
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
+      setError(error.message);
     }
   };
 
@@ -58,7 +74,7 @@ const SignUp = () => {
         background: "#afafaf",
       }}
     >
-      <Card sx={{ maxWidth: 450 }}>
+      <Card sx={{ width: { xs: "100%", sm: 400, md: 450, lg: 470 } }}>
         <CardMedia
           component="img"
           height="180"
@@ -70,14 +86,20 @@ const SignUp = () => {
             Registrarse
           </Typography>
 
+          {error && (
+            <Alert sx={{ marginY: "8px" }} variant="outlined" severity="error">
+              {error}
+            </Alert>
+          )}
+
           <Box
             onSubmit={handleSubmit}
             component="form"
             sx={{ padding: "10px" }}
           >
+            <InputLabel htmlFor="input-email">Email</InputLabel>
             <TextField
-              id="outlined-basic"
-              label="Email"
+              id="input-email"
               type="email"
               variant="outlined"
               color="success"
@@ -87,16 +109,27 @@ const SignUp = () => {
               onChange={handleChangeEmail}
             />
 
-            <TextField
-              id="filled-password-input"
-              label="Password"
-              type="password"
+            <InputLabel htmlFor="outlined-password">Password</InputLabel>
+
+            <OutlinedInput
+              id="outlined-password"
+              type={showPassword ? "text" : "password"}
               autoComplete="current-password"
-              variant="outlined"
               color="success"
               fullWidth={true}
               value={password}
               onChange={handleChangePassword}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    edge="end"
+                    onClick={handleClickShowPassword}
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
             />
 
             <CardActions>

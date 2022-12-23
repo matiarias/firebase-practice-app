@@ -5,6 +5,7 @@ import { UseAuth } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 
 import {
+  styled,
   Box,
   Stack,
   Card,
@@ -12,21 +13,56 @@ import {
   CardMedia,
   CardActions,
   Typography,
-  TextField,
   Button,
   Alert,
+  OutlinedInput,
+  InputAdornment,
+  IconButton,
+  InputLabel,
 } from "@mui/material";
 
 import LoginIcon from "@mui/icons-material/Login";
-import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+
+const GithubButton = styled(Button)({
+  boxShadow: "none",
+  textTransform: "none",
+  fontSize: 16,
+  padding: "6px 12px",
+  lineHeight: 1.5,
+  backgroundColor: "#000000",
+  fontFamily: [
+    "-apple-system",
+    "BlinkMacSystemFont",
+    '"Segoe UI"',
+    '"Helvetica Neue"',
+    "Arial",
+    "sans-serif",
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(","),
+  "&:hover": {
+    backgroundColor: "#222222",
+    boxShadow: "none",
+  },
+  "&:active": {
+    boxShadow: "none",
+    backgroundColor: "#000000",
+  },
+});
 
 const Login = () => {
-  const { user, logIn } = UseAuth();
+  const { logIn } = UseAuth();
 
   const [email, setEmail] = useState("");
 
   const [password, setPassword] = useState("");
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const [errorLogIn, setErrorLogIn] = useState("");
 
@@ -38,6 +74,10 @@ const Login = () => {
 
   const handleChangePassword = ({ target }) => {
     setPassword(target.value);
+  };
+
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
   const handleSubmit = async (e) => {
@@ -64,10 +104,10 @@ const Login = () => {
         background: "#afafaf",
       }}
     >
-      <Card sx={{ maxWidth: 450 }}>
+      <Card sx={{ width: { xs: "100%", sm: 400, md: 450, lg: 470 } }}>
         <CardMedia
           component="img"
-          height="180"
+          height="150"
           image="https://cdn.pixabay.com/photo/2016/10/21/14/50/plouzane-1758197_960_720.jpg"
           alt="beach"
         />
@@ -77,31 +117,41 @@ const Login = () => {
             Iniciar Sesión
           </Typography>
 
-          {errorLogIn && <Alert severity="error">{errorLogIn}</Alert>}
+          {errorLogIn && (
+            <Alert sx={{ marginY: "16px" }} variant="outlined" severity="error">
+              {errorLogIn}
+            </Alert>
+          )}
 
           <Box onSubmit={handleSubmit} component="form">
-            <TextField
-              id="outlined-basic"
-              label="Email"
+            <InputLabel htmlFor="input-email">Email</InputLabel>
+            <OutlinedInput
+              id="input-email"
               type="email"
-              variant="outlined"
-              color="primary"
               fullWidth={true}
               sx={{ marginBottom: "10px" }}
               value={email}
               onChange={handleChangeEmail}
             />
 
-            <TextField
-              id="filled-password-input"
-              label="Password"
-              type="password"
-              autoComplete="current-password"
-              variant="outlined"
-              color="primary"
+            <InputLabel htmlFor="outlined-password">Password</InputLabel>
+            <OutlinedInput
+              id="outlined-password"
+              type={showPassword ? "text" : "password"}
               fullWidth={true}
               value={password}
               onChange={handleChangePassword}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    edge="end"
+                    onClick={handleClickShowPassword}
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
             />
 
             <CardActions>
@@ -128,20 +178,13 @@ const Login = () => {
             spacing={4}
             sx={{ marginY: "12px", justifyContent: "center" }}
           >
-            <Button
-              variant="contained"
-              startIcon={<GoogleIcon />}
-              color="error"
-            >
+            <Button variant="contained" startIcon={<GoogleIcon />} color="info">
               Google
             </Button>
-            <Button
-              variant="contained"
-              startIcon={<FacebookIcon />}
-              color="info"
-            >
-              Facebook
-            </Button>
+
+            <GithubButton variant="contained" startIcon={<GitHubIcon />}>
+              Github
+            </GithubButton>
           </Stack>
 
           <Box textAlign="center">
