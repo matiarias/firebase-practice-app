@@ -56,7 +56,7 @@ const GithubButton = styled(Button)({
 });
 
 const Login = () => {
-  const { logIn } = UseAuth();
+  const { logIn, loginGoogle } = UseAuth();
 
   const [email, setEmail] = useState("");
 
@@ -88,6 +88,15 @@ const Login = () => {
       navigate("/");
     } catch (error) {
       setErrorLogIn(error.message);
+    }
+  };
+
+  const handleLoginGoogle = async () => {
+    try {
+      await loginGoogle();
+      navigate("/");
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -179,7 +188,12 @@ const Login = () => {
             spacing={4}
             sx={{ marginY: "12px", justifyContent: "center" }}
           >
-            <Button variant="contained" startIcon={<GoogleIcon />} color="info">
+            <Button
+              onClick={handleLoginGoogle}
+              variant="contained"
+              startIcon={<GoogleIcon />}
+              color="info"
+            >
               Google
             </Button>
 
