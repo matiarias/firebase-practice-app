@@ -7,6 +7,7 @@ import {
   CardMedia,
   Typography,
   Box,
+  IconButton,
 } from "@mui/material";
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -16,10 +17,14 @@ const Home = () => {
   const [data, setData] = useState([]);
 
   const fetchApi = async () => {
-    const resp = await fetch("https://rickandmortyapi.com/api/character");
-    const { results } = await resp.json();
-    // console.log(results);
-    setData(results);
+    try {
+      const resp = await fetch("https://rickandmortyapi.com/api/character");
+      const { results } = await resp.json();
+      // console.log(results);
+      setData(results);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -44,10 +49,9 @@ const Home = () => {
         {data?.map((card) => (
           <Grid key={card?.id} item>
             <Card sx={{ width: { xs: "100%", sm: 300 }, position: "relative" }}>
-              <FavoriteBorderIcon
-                fontSize="large"
-                sx={{ position: "absolute", top: 5, right: 5 }}
-              />
+              <IconButton sx={{ position: "absolute", top: 5, right: 5 }}>
+                <FavoriteBorderIcon fontSize="large" />
+              </IconButton>
               <CardMedia
                 component="img"
                 height="180"
