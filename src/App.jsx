@@ -7,7 +7,7 @@ import NavBar from "./components/NavBar";
 
 import { AuthContextProvider } from "./context/AuthContext";
 
-import { ProtectedRoutes } from "./routes/ProtectedRoutes";
+// import { ProtectedRoutes } from "./routes/ProtectedRoutes";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 

@@ -136,7 +136,7 @@ const Login = () => {
           </Typography>
 
           {errorLogIn && (
-            <Alert sx={{ marginY: "16px" }} variant="outlined" severity="error">
+            <Alert sx={{ marginY: "8px" }} variant="outlined" severity="error">
               {errorLogIn}
             </Alert>
           )}
@@ -175,7 +175,7 @@ const Login = () => {
 
             <CardActions>
               <Button
-                sx={{ marginY: "10px" }}
+                sx={{ marginTop: "10px" }}
                 variant="contained"
                 color="warning"
                 fullWidth={true}
@@ -197,7 +197,7 @@ const Login = () => {
             justifyContent="center"
             spacing={3}
             gap={2}
-            sx={{ marginY: "12px" }}
+            sx={{ marginY: "4px" }}
           >
             <Button
               onClick={handleLoginGoogle}
